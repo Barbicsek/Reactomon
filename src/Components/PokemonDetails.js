@@ -3,14 +3,14 @@ import {Typography, CircularProgress, Button} from '@material-ui/core';
 import axios from "axios";
 
 const PokemonDetails = props => {
-    console.log("props")
-    console.log(props)
+    //console.log("props")
+    //console.log(props)
     const { history, match } = props;
-    console.log("match ")
-    console.log(match)
+    //console.log("match ")
+    //console.log(match)
     const { params } = match;
-    console.log("params ")
-    console.log(params)
+    //console.log("params ")
+    //console.log(params)
     const { pokemonId } = params;
     const [pokemon, setPokemon] = useState();
 

@@ -35,10 +35,8 @@ const PokemonList = props => {
                 const { data } = response;
                 const { results} = data;
                 const newPokemonData = {};
+                console.log(results)
                 results.forEach((pokemon, index) => {
-                    console.log(results)
-                    console.log(index)
-                    console.log(pokemon)
                     newPokemonData[index + 1] = {
                         id: index + 1,
                         name: pokemon.name,
@@ -76,7 +74,7 @@ const PokemonList = props => {
             <AppBar position="static">
                 <Toolbar/>
             </AppBar>
-            <Button  variant="contained" onClick={() => {history.push("/typelist")}}>Typle List</Button>
+            <Button variant="contained" onClick={() => {history.push("/typelist")}}>Typle List</Button>
             {pokemonData ? (
                 <Grid container spacing={2} className={classes.pokedexContainer}>
                     {Object.keys(pokemonData).map(pokemonId => 
