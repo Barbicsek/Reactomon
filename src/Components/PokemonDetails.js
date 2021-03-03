@@ -2,7 +2,9 @@ import React, {useState, useEffect} from 'react';
 import {Typography, CircularProgress, Button} from '@material-ui/core';
 import axios from "axios";
 
-const Pokemon = props => {
+const PokemonDetails = props => {
+    console.log("props")
+    console.log(props)
     const { history, match } = props;
     console.log("match ")
     console.log(match)
@@ -62,5 +64,5 @@ const Pokemon = props => {
     )
 }
 
-export default Pokemon;
+export default PokemonDetails;
 
