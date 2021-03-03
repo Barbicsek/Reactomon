@@ -2,6 +2,7 @@ import {Route, Switch} from 'react-router-dom';
 import PokemonList from './Components/PokemonList';
 import PokemonDetails from './Components/PokemonDetails';
 import TypeList from './Components/TypeList';
+import TypeDetails from './Components/TypeDetails';
 
 
 
@@ -16,6 +17,11 @@ const App = props => {
         exact
         path='/:pokemonId'
         render={(props) => <PokemonDetails {...props}/>}>
+      </Route>
+      <Route
+        exact
+        path='/:typeId'
+        render={(props) => <TypeDetails {...props}/>}>
       </Route>
      
     </Switch>
