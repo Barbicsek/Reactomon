@@ -23,12 +23,20 @@ const TypeDetails = props => {
     }, [typeId]);
 
     const getTypeDetailsJSX = () => {
-        const {name, id} = typeDetails;
+        console.log(typeDetails)
+        const {name, id, generation, move_damage_class} = typeDetails;
         return (
             <>
                 <Typography variant="h3">
-                    {`${id}. ${name}` + " type"}
+                    {`${id}. ${name}`}
                 </Typography>
+                <Typography variant="h6"> Generaton: </Typography>
+                <Typography>{generation.name}</Typography>
+                <Typography variant="h6"> Damage class: </Typography>
+                <Typography>{move_damage_class.name}</Typography>
+           
+            
+
                </>
             )
     }
