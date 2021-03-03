@@ -34,7 +34,7 @@ const TypeList = props => {
             .then((response) => {
                 const {data} = response;
                 const {results} = data;
-                console.log(results);
+
                 const newTypeData = {};
                 results.forEach((type, index) => {
                 newTypeData[index + 1] = {
@@ -51,8 +51,11 @@ const TypeList = props => {
         const {id, name} = typeData[typeId];
 
         return (
-            <Grid item xs={12} sm={4} key={typeId}>
-                <Card>
+            <Grid item xs={3} key={typeId}>
+                <Card onClick = {() => history.push(`/typelist/${typeId}`)}>
+                    <CardMedia className={classes.cardMedia}
+                    style={{width: "130px", height: "130px"}}>
+                    </CardMedia>
                     <CardContent className={classes.cardContent}>
                         <Typography>
                             {`${id}. ${name}`}
