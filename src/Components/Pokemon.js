@@ -1,26 +1,34 @@
 import React, {useState, useEffect} from 'react';
-import MokedData from '../MokedData';
-import {Typography} from '@material-ui/core';
-
+import {Typography, CircularProgress, Button} from '@material-ui/core';
+import axios from "axios";
 
 const Pokemon = props => {
-    const { match } = props;
+    const { history, match } = props;
     const { params } = match;
     const { pokemonId } = params;
-    const [pokemon, setPokemon] = useState(MokedData[`${pokemonId}`]);
+    const [pokemon, setPokemon] = useState();
+
+    useEffect(( ) => {
+        axios
+        .get(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
+        .then((response) => {
+            const { data } = response;
+            setPokemon(data);
+        })
+    }, [pokemonId]);
+
 
     const generatePokemonJSX = () => {
         const {name, id, height, weight, types, sprites} = pokemon;
         const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
-        const {front_default} = sprites;
+
         return (
         <>
             <Typography variant="h1">
-                {`${id} ${name}`}
-                <img src={front_default}/>
+                {`${id}. ${name}`}
             </Typography>
             <img style={{width: "300px", height: "300px"}} src={imageUrl}/>
-            <Typography varinat="h6">Pokemon Info</Typography>
+            <Typography varinat="h3">Pokemon Info</Typography>
             <Typography>Height: {height} </Typography>
             <Typography>Weight: {weight} </Typography>
             <Typography variant="h6"> Types: </Typography>
@@ -35,7 +43,16 @@ const Pokemon = props => {
     }
     return (
         <>
-        {generatePokemonJSX()}
+        {pokemon === undefined && <CircularProgress/>}
+        {pokemon !== undefined && pokemon && generatePokemonJSX()}
+        {pokemon !== undefined && (
+            <Button variant="contained" onClick={()=> {
+                history.push("/");
+            }}>
+                Back to the main page
+
+            </Button>
+        ) }
         </>
 
     )

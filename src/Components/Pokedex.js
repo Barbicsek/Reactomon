@@ -56,7 +56,7 @@ const Pokedex = props => {
                     </CardMedia>
                     <CardContent className={classes.cardContent}>
                         <Typography>
-                            {`${id} ${name}`}
+                            {`${id}. ${name}`}
                         </Typography>
                     </CardContent>
                 </Card>
