@@ -20,7 +20,7 @@ const App = props => {
       </Route>
       <Route
         exact
-        path='/:typeId'
+        path='/typelist/:typeId'
         render={(props) => <TypeDetails {...props}/>}>
       </Route>
      
