@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { AppBar, Toolbar, Grid, Card, CardContent, CircularProgress, CardMedia, Typography } from "@material-ui/core";
+import { AppBar, Toolbar, Grid, Card, CardContent, CircularProgress, CardMedia, Typography, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 
@@ -15,11 +15,15 @@ const useStyles = makeStyles({
 
     cardContent: {
         textAlign: "center",
+    },
+    titleText: {
+        textAlign: "center",
+        color: "red",
     }
 });
 
 
-const Pokedex = props => {
+const PokemonList = props => {
     const {history} = props;
     const classes = useStyles;
     const [pokemonData, setPokemonData] = useState({});
@@ -32,6 +36,9 @@ const Pokedex = props => {
                 const { results} = data;
                 const newPokemonData = {};
                 results.forEach((pokemon, index) => {
+                    console.log(results)
+                    console.log(index)
+                    console.log(pokemon)
                     newPokemonData[index + 1] = {
                         id: index + 1,
                         name: pokemon.name,
@@ -69,6 +76,7 @@ const Pokedex = props => {
             <AppBar position="static">
                 <Toolbar/>
             </AppBar>
+            <Button  variant="contained" onClick={() => {history.push("/typelist")}}>Typle List</Button>
             {pokemonData ? (
                 <Grid container spacing={2} className={classes.pokedexContainer}>
                     {Object.keys(pokemonData).map(pokemonId => 
@@ -81,4 +89,4 @@ const Pokedex = props => {
     )
 }
 
-export default Pokedex;
+export default PokemonList;
