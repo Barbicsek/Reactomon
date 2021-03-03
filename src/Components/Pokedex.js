@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { AppBar, Toolbar, Grid, Card, CardContent, CircularProgress, CardMedia } from "@material-ui/core";
+import { AppBar, Toolbar, Grid, Card, CardContent, CircularProgress, CardMedia, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import MokedData from '../MokedData';
 
@@ -11,10 +11,16 @@ const useStyles = makeStyles({
     },
     cardMedia: {
         margin: "auto",
+    },
+
+    cardContent: {
+        textAlign: "center",
     }
 });
 
-const Pokedex = () => {
+
+const Pokedex = props => {
+    const {history} = props;
     const classes = useStyles;
     const [pokemonData, setPokemonData] = useState(MokedData);
 
@@ -25,13 +31,17 @@ const Pokedex = () => {
 
         return (
             <Grid item xs={12} sm={4} key={pokemonId}>
-                <Card>
+                <Card onClick = {() => history.push(`/${pokemonId}`)}>
                     <CardMedia className={classes.cardMedia}
                     image={sprite}
                     style={{width: "130px", height: "130px"}}>
                         
                     </CardMedia>
-                    <CardContent>HI</CardContent>
+                    <CardContent className={classes.cardContent}>
+                        <Typography>
+                            {`${id} ${name}`}
+                        </Typography>
+                    </CardContent>
                 </Card>
             </Grid>
         )
