@@ -10,12 +10,19 @@ const App = () => {
 
   const [pokemons, setPokemons] = useState([]);
 
+  const pokemonId = () => {
+    const min = Math.ceil(1)
+    const max = Math.floor(150)
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
   useEffect(() => {
-      axios.get(`https://pokeapi.co/api/v2/pokemon`).then(response => {
+      axios.get(`https://pokeapi.co/api/v2/pokemon/`).then(response => {
           const pokemons = response.data.results;
           setPokemons(pokemons);
       });
   }, [] );
+
 
   return (
     <Router>
