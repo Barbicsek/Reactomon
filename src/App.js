@@ -1,8 +1,6 @@
 import {Route, Switch} from 'react-router-dom';
-import axios from "axios";
-import React, {useState, useEffect} from "react";
-import Pokedex from './Components/Pokedex';
-import Pokemon from './Components/Pokemon';
+import PokemonList from './Components/PokemonList';
+import PokemonDetails from './Components/PokemonDetails';
 
 
 const App = props => {
@@ -10,11 +8,11 @@ const App = props => {
 
   return (
     <Switch>
-      <Route exact path='/' render={(props) => <Pokedex {...props}/>}></Route>
+      <Route exact path='/' render={(props) => <PokemonList {...props}/>}></Route>
       <Route
         exact
         path='/:pokemonId'
-        render={(props) => <Pokemon {...props}/>}>
+        render={(props) => <PokemonDetails {...props}/>}>
       </Route>
     </Switch>
 
