@@ -32,7 +32,7 @@ const PokemonDetails = props => {
       }
 
     const generatePokemonJSX = () => {
-        const {name, id, height, weight, types, sprites} = pokemon;
+        const {name, id, height, weight, types} = pokemon;
         const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
 
         return (
@@ -50,7 +50,7 @@ const PokemonDetails = props => {
                 const {name} = type;
                 return <Typography key={name}> {`${name}`}</Typography>
             })}
-            <Button variant="outline-success" onClick={catchPokemon}>Catch!</Button>{' '}
+            
 
         </>
         )
@@ -60,6 +60,8 @@ const PokemonDetails = props => {
         {pokemon === undefined && <CircularProgress/>}
         {pokemon !== undefined && pokemon && generatePokemonJSX()}
         <Button variant="outline-info" onClick={() => {history.push("/pokemons")}}>Back to the Pokemons</Button>{' '}
+        <Button variant="outline-success" onClick={catchPokemon}>Catch!</Button>{' '}
+        <Button variant="outline-success" onClick={() => {history.push("/catchedpokemons")}} >Catched Pokemons!</Button>{' '}
         </>
 
     )

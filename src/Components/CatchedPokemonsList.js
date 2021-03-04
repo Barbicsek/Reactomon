@@ -30,10 +30,11 @@ const CatchedPokemonsList = props => {
     const {history} = props;
 
     const pokemonData = useContext(CatchedPokemonContext);
-    console.log(pokemonData)
+
 
     const getPokemonCard = (pokemonId) => {
         const {id, name} = pokemonData[pokemonId];
+
 
 
         return (
@@ -44,7 +45,9 @@ const CatchedPokemonsList = props => {
                             {`${id}. ${name}`}
                         </Typography>
                     </CardContent>
-                </Card>       
+                </Card>
+
+         
             </Grid>
         )
     };
@@ -55,7 +58,6 @@ const CatchedPokemonsList = props => {
                 <Toolbar/>
             </AppBar>
             <Button variant="outline-info" onClick={() => {history.push("/")}}>Home</Button>{' '}
-            <Button variant="outline-info" onClick={() => {history.push("/typelist")}}>Type List</Button>{' '}
             {pokemonData ? (
                 <Grid container spacing={2} className={classes.pokedexContainer}>
                     {Object.keys(pokemonData).map(pokemonId => 

@@ -3,7 +3,7 @@ import { AppBar, Toolbar, Grid, Card, CardContent, CircularProgress, CardMedia, 
 import { Button } from "react-bootstrap";
 import { makeStyles } from "@material-ui/core/styles";
 import {PokemonContext} from '../Contexts/PokemonContext';
-import {CatchedPokemonContext} from '../Contexts/CatchedPokemonContext';
+
 
 
 const useStyles = makeStyles({
