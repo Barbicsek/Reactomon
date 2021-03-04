@@ -12,6 +12,7 @@ const Menu = () => {
           <Nav.Link href="/">Home</Nav.Link>
           <Nav.Link href="/pokemons">Pokemon List</Nav.Link>
           <Nav.Link href="/typelist">Type List</Nav.Link>
+          <Nav.Link href="/catchedpokemons">Catched pokemons</Nav.Link>
         </Nav>
       </Navbar>
     </>
