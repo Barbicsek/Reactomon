@@ -1,7 +1,7 @@
-import React, {useState, useEffect, useContext} from 'react';
-import { AppBar, Toolbar, Grid, Card, CardContent, CircularProgress, CardMedia, Typography, Button } from "@material-ui/core";
+import React, {useContext} from 'react';
+import { AppBar, Toolbar, Grid, Card, CardContent, CircularProgress, CardMedia, Typography } from "@material-ui/core";
+import { Button } from "react-bootstrap";
 import { makeStyles } from "@material-ui/core/styles";
-import axios from "axios";
 import {PokemonContext} from '../Contexts/PokemonContext';
 
 const useStyles = makeStyles({
@@ -34,7 +34,7 @@ const PokemonList = props => {
 
         return (
             <Grid item xs={12} sm={4} key={pokemonId}>
-                <Card onClick = {() => history.push(`/${pokemonId}`)}>
+                <Card onClick = {() => history.push(`/pokemons/${pokemonId}`)}>
                     <CardMedia className={classes.cardMedia}
                     image={sprite}
                     style={{width: "130px", height: "130px"}}>
@@ -55,7 +55,8 @@ const PokemonList = props => {
             <AppBar position="static">
                 <Toolbar/>
             </AppBar>
-            <Button variant="contained" onClick={() => {history.push("/typelist")}}>Typle List</Button>
+            <Button variant="outline-info" onClick={() => {history.push("/")}}>Home</Button>{' '}
+            <Button variant="outline-success" onClick={() => {history.push("/typelist")}}>Type List</Button>{' '}
             {pokemonData ? (
                 <Grid container spacing={2} className={classes.pokedexContainer}>
                     {Object.keys(pokemonData).map(pokemonId => 

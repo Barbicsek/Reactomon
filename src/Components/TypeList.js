@@ -1,7 +1,8 @@
-import React, {useState, useEffect} from 'react';
-import axios from "axios";
+import React, {useContext} from 'react';
 import {AppBar, Toolbar, Grid, Card, Typography, CardMedia, CardContent, CircularProgress} from "@material-ui/core";
+import { Button } from "react-bootstrap";
 import { makeStyles } from "@material-ui/core/styles";
+import {TypeContext} from "../Contexts/TypeContext";
 
 const useStyles = makeStyles({
     pokedexContainer: {
@@ -26,26 +27,8 @@ const useStyles = makeStyles({
 const TypeList = props => {
     const { history } = props;
     const classes = useStyles;
-    const [typeData, setTypeData] = useState({});
 
-    useEffect(() => {
-        axios
-            .get(`https://pokeapi.co/api/v2/type`)
-            .then((response) => {
-                const {data} = response;
-                const {results} = data;
-
-                const newTypeData = {};
-                results.forEach((type, index) => {
-                newTypeData[index + 1] = {
-                    id: index + 1,
-                    name: type.name,
-                }
-            
-                })
-                setTypeData(newTypeData);
-            })
-    }, []);
+    const typeData = useContext(TypeContext);
 
     const getTypeCard = (typeId) => {
         const {id, name} = typeData[typeId];
@@ -71,6 +54,8 @@ const TypeList = props => {
             <AppBar position="static">
                 <Toolbar/>
             </AppBar>
+            <Button variant="outline-info" onClick={() => {history.push("/")}}>Home</Button>{' '}
+            <Button variant="outline-success" onClick={() => {history.push("/pokemons")}}>Pokemons</Button>{' '}
             {typeData ? (
                 <Grid container spacing={2} className={classes.pokedexContainer}>
                     {Object.keys(typeData).map(typeId => 

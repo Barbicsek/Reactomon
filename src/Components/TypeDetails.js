@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import {Typography, CircularProgress, Button} from '@material-ui/core';
+import {Typography, CircularProgress} from '@material-ui/core';
+import { Button } from "react-bootstrap";
 import axios from "axios";
 
 
@@ -46,14 +47,7 @@ const TypeDetails = props => {
         <>
         {typeDetails === undefined && <CircularProgress/>}
         {typeDetails !== undefined && typeDetails && getTypeDetailsJSX()}
-        {typeDetails !== undefined && (
-            <Button variant="contained" onClick={()=> {
-                history.push("/");
-            }}>
-                Back to the main page
-
-            </Button>
-        ) }
+        <Button variant="outline-info" onClick={() => {history.push("/")}}>Back to the Home page</Button>{' '}
         </>
 
     )

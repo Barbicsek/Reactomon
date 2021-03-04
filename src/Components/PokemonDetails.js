@@ -1,18 +1,18 @@
-import React, {useState, useEffect} from 'react';
-import {Typography, CircularProgress, Button} from '@material-ui/core';
+import React, {useState, useEffect, useContext} from 'react';
+import {Typography, CircularProgress} from '@material-ui/core';
+import { Button } from "react-bootstrap";
 import axios from "axios";
+import {PokemonContext} from '../Contexts/PokemonContext';
 
 const PokemonDetails = props => {
     //console.log("props")
-    //console.log(props)
+    console.log(props)
     const { history, match } = props;
-    //console.log("match ")
-    //console.log(match)
     const { params } = match;
-    //console.log("params ")
-    //console.log(params)
     const { pokemonId } = params;
+
     const [pokemon, setPokemon] = useState();
+    const pokemonDetail = useContext(PokemonContext);
 
     useEffect(( ) => {
         axios
@@ -51,14 +51,7 @@ const PokemonDetails = props => {
         <>
         {pokemon === undefined && <CircularProgress/>}
         {pokemon !== undefined && pokemon && generatePokemonJSX()}
-        {pokemon !== undefined && (
-            <Button variant="contained" onClick={()=> {
-                history.push("/");
-            }}>
-                Back to the main page
-
-            </Button>
-        ) }
+        <Button variant="outline-info" onClick={() => {history.push("/")}}>Back to the Home page</Button>{' '}
         </>
 
     )
