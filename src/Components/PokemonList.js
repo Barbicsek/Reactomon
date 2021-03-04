@@ -3,6 +3,8 @@ import { AppBar, Toolbar, Grid, Card, CardContent, CircularProgress, CardMedia, 
 import { Button } from "react-bootstrap";
 import { makeStyles } from "@material-ui/core/styles";
 import {PokemonContext} from '../Contexts/PokemonContext';
+import {CatchedPokemonContext} from '../Contexts/CatchedPokemonContext';
+
 
 const useStyles = makeStyles({
     pokedexContainer: {
@@ -27,10 +29,12 @@ const useStyles = makeStyles({
 const PokemonList = props => {
     const {history} = props;
     const classes = useStyles;
+
     const pokemonData = useContext(PokemonContext);
 
     const getPokemonCard = (pokemonId) => {
         const {id, name, sprite} = pokemonData[pokemonId];
+
 
         return (
             <Grid item xs={12} sm={4} key={pokemonId}>
@@ -46,6 +50,8 @@ const PokemonList = props => {
                         </Typography>
                     </CardContent>
                 </Card>
+                <Button variant="outline-success" >Catch!</Button>{' '}
+         
             </Grid>
         )
     };
@@ -56,7 +62,7 @@ const PokemonList = props => {
                 <Toolbar/>
             </AppBar>
             <Button variant="outline-info" onClick={() => {history.push("/")}}>Home</Button>{' '}
-            <Button variant="outline-success" onClick={() => {history.push("/typelist")}}>Type List</Button>{' '}
+            <Button variant="outline-info" onClick={() => {history.push("/typelist")}}>Type List</Button>{' '}
             {pokemonData ? (
                 <Grid container spacing={2} className={classes.pokedexContainer}>
                     {Object.keys(pokemonData).map(pokemonId => 

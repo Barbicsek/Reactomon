@@ -55,7 +55,7 @@ const TypeList = props => {
                 <Toolbar/>
             </AppBar>
             <Button variant="outline-info" onClick={() => {history.push("/")}}>Home</Button>{' '}
-            <Button variant="outline-success" onClick={() => {history.push("/pokemons")}}>Pokemons</Button>{' '}
+            <Button variant="outline-info" onClick={() => {history.push("/pokemons")}}>Pokemons</Button>{' '}
             {typeData ? (
                 <Grid container spacing={2} className={classes.pokedexContainer}>
                     {Object.keys(typeData).map(typeId => 

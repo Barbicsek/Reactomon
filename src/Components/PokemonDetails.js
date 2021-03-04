@@ -2,17 +2,18 @@ import React, {useState, useEffect, useContext} from 'react';
 import {Typography, CircularProgress} from '@material-ui/core';
 import { Button } from "react-bootstrap";
 import axios from "axios";
-import {PokemonContext} from '../Contexts/PokemonContext';
+import {CatchedPokemonContext} from '../Contexts/CatchedPokemonContext';
+
 
 const PokemonDetails = props => {
-    //console.log("props")
-    console.log(props)
+
+
     const { history, match } = props;
     const { params } = match;
     const { pokemonId } = params;
 
     const [pokemon, setPokemon] = useState();
-    const pokemonDetail = useContext(PokemonContext);
+    const [catchedPoke, setCatchedPoke]  = useContext(CatchedPokemonContext);
 
     useEffect(( ) => {
         axios
@@ -23,6 +24,12 @@ const PokemonDetails = props => {
         })
     }, [pokemonId]);
 
+
+    const catchPokemon = () => {
+        const Poke = { name: pokemon.name, id: pokemon.id };
+        setCatchedPoke(catchedPoke => [...catchedPoke, Poke]);
+        //console.log(catchedPoke);
+      }
 
     const generatePokemonJSX = () => {
         const {name, id, height, weight, types, sprites} = pokemon;
@@ -43,6 +50,7 @@ const PokemonDetails = props => {
                 const {name} = type;
                 return <Typography key={name}> {`${name}`}</Typography>
             })}
+            <Button variant="outline-success" onClick={catchPokemon}>Catch!</Button>{' '}
 
         </>
         )
@@ -51,7 +59,7 @@ const PokemonDetails = props => {
         <>
         {pokemon === undefined && <CircularProgress/>}
         {pokemon !== undefined && pokemon && generatePokemonJSX()}
-        <Button variant="outline-info" onClick={() => {history.push("/")}}>Back to the Home page</Button>{' '}
+        <Button variant="outline-info" onClick={() => {history.push("/pokemons")}}>Back to the Pokemons</Button>{' '}
         </>
 
     )
