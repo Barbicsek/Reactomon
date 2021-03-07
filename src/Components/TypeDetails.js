@@ -24,7 +24,7 @@ const TypeDetails = props => {
     }, [typeId]);
 
     const getTypeDetailsJSX = () => {
-        console.log(typeDetails)
+   
         const {name, id, generation, move_damage_class} = typeDetails;
         return (
             <>

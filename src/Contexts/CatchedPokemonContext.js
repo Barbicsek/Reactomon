@@ -1,4 +1,5 @@
-import React, {createContext, useState} from 'react';
+import React, {createContext, useState, useEffect} from 'react';
+import CatchedPokemonsList from '../Components/CatchedPokemonsList';
 
 export const CatchedPokemonContext = createContext();
 
@@ -9,10 +10,10 @@ export const CatchedPokeProvider = props => {
     console.log(catchedPoke)
 
 
-
     return (
         <CatchedPokemonContext.Provider value={[catchedPoke, setCatchedPoke]}>
             {props.children}
         </CatchedPokemonContext.Provider>
+
     )
 }

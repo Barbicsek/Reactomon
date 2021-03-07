@@ -60,8 +60,7 @@ const PokemonDetails = props => {
         {pokemon === undefined && <CircularProgress/>}
         {pokemon !== undefined && pokemon && generatePokemonJSX()}
         <Button variant="outline-info" onClick={() => {history.push("/pokemons")}}>Back to the Pokemons</Button>{' '}
-        <Button variant="outline-success" onClick={catchPokemon}>Catch!</Button>{' '}
-        <Button variant="outline-success" onClick={() => {history.push("/catchedpokemons")}} >Catched Pokemons!</Button>{' '}
+        <Button variant="outline-success" onClick={() => catchPokemon()}>Catch!</Button>{' '}
         </>
 
     )
