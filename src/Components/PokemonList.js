@@ -36,7 +36,7 @@ const PokemonList = props => {
 
     const catchPokemon = (id, name) => {
         const Poke = { name: name, id: id };
-        setCatchedPoke(catchedPoke => [...catchedPoke, Poke]);
+        setCatchedPoke([...catchedPoke, Poke]);
         //console.log(catchedPoke);
       }
 

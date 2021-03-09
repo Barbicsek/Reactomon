@@ -1,17 +1,40 @@
 import React, {createContext, useState, useEffect} from 'react';
-import CatchedPokemonsList from '../Components/CatchedPokemonsList';
 
 export const CatchedPokemonContext = createContext();
 
 export const CatchedPokeProvider = props => {
 
     const [catchedPoke, setCatchedPoke] = useState([]);
-    console.log("CATCH POKEMON")
-    console.log(catchedPoke)
+
+    useEffect(() => {
+        if (localStorage.getItem("catchedPokemons")){
+            setCatchedPoke(JSON.parse(localStorage.getItem("catchedPokemons")))
+        }
+       
+    }, [setCatchedPoke])
+
+
+    const distinct = (a) => {
+        const result = [];
+    
+        for(let item of a) {
+            if(result.filter(i => JSON.stringify(i) === JSON.stringify(item)).length === 0) {
+                result.push(item);
+            }
+        }
+    
+        return result;
+    }
+
+    const persistCatchedPoke = (catchedPokemons) => {
+        setCatchedPoke(catchedPokemons)
+        localStorage.setItem("catchedPokemons",JSON.stringify(distinct(catchedPokemons)))
+    }
+
 
 
     return (
-        <CatchedPokemonContext.Provider value={[catchedPoke, setCatchedPoke]}>
+        <CatchedPokemonContext.Provider value={[catchedPoke, persistCatchedPoke]}>
             {props.children}
         </CatchedPokemonContext.Provider>
 
